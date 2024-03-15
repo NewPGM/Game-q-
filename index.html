@@ -12,13 +12,45 @@
         <div class="question">
             <h1>hello world</h1>
         </div>
+        <div id="scoreDisplay">Score: <span id="scoreValue">0</span></div>
+
         <div class="box-container">
-            <button class="shadow__btn">1</button>
-            <button class="shadow__btn">1</button>
-            <button class="shadow__btn">1</button>
-            <button class="shadow__btn">1</button>
+            <button class="shadow__btn" id="button1">1</button>
+            <button class="shadow__btn" id="button2">2</button>
+            <button class="shadow__btn" id="button3">3</button>
+            <button class="shadow__btn" id="button4">4</button>
         </div>
     </main>
+
+    <script>
+        // ประกาศตัวแปร score เพื่อเก็บคะแนน
+    let score = 0;
+    
+    // สร้าง Element สำหรับแสดงคะแนน
+    const scoreDisplay = document.getElementById("scoreValue");
+    
+    // กำหนดปุ่มที่มีคะแนน
+    const scoreButton = document.getElementById("button3");
+    
+    // เพิ่ม Event Listener เมื่อคลิกที่ปุ่มที่มีคะแนน
+    scoreButton.addEventListener("click", function() {
+        // เพิ่มคะแนนขึ้น 1 คะแนน
+        score++;
+        // แสดงคะแนนใหม่
+        scoreDisplay.textContent = score;
+    });
+    
+    // วงวนเพื่อให้ตรวจสอบปุ่มที่ไม่ใช่ button3 และทำการลบคะแนน
+    for(let i = 1; i <= 4; i++) {
+        if(i !== 3) {
+            const currentButton = document.getElementById("button" + i);
+            currentButton.addEventListener("click", function() {
+                score--;
+                scoreDisplay.textContent = score;
+            });
+        }
+    }
+    </script>
 
 </body>
 </html>
